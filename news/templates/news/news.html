@@ -1,15 +1,17 @@
 {% extends 'main/layoute.html' %}
-{% block title %}<title>Новостная страница</title>{% endblock %}
+{% block title %}Новости{% endblock %}
 {% block content %}
-<h1>Новостная страница</h1>
-{% for new in news %}
+<h1>Новости</h1>
+{% for item in news %}
     <div class="card mb-3">
         <div class="card-body">
-            <h3 class="card-title">{{ new.title }}</h3>
-            <h6 class="card-subtitle mb-2 text-muted">{{ new.pub_date }} | Автор: {{ new.author }}</h6>
-            <p class="card-text">{{ new.short_description }}</p>
-            <p>{{ new.text }}</p>
+            <h3>{{ item.title }}</h3>
+            <h6 class="text-muted">{{ item.pub_date }} — {{ item.author }}</h6>
+            <p><strong>{{ item.short_description }}</strong></p>
+            <p>{{ item.text }}</p>
         </div>
     </div>
+{% empty %}
+    <p>Новостей пока нет.</p>
 {% endfor %}
 {% endblock %}
