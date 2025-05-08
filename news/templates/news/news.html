@@ -1,17 +1,18 @@
 {% extends 'main/layoute.html' %}
 {% block title %}Новости{% endblock %}
 {% block content %}
-<h1>Новости</h1>
-{% for item in news %}
-    <div class="card mb-3">
-        <div class="card-body">
-            <h3>{{ item.title }}</h3>
-            <h6 class="text-muted">{{ item.pub_date }} — {{ item.author }}</h6>
-            <p><strong>{{ item.short_description }}</strong></p>
-            <p>{{ item.text }}</p>
+<h1>Новостная страница</h1>
+{% if news %}
+    {% for new in news %}
+        <div class="card mb-3" style="width: 30rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ new.title }}</h5>
+                <p class="card-text">{{ new.short_description }}</p>
+                <a href="{% url 'news_detail' new.id %}" class="btn btn-primary">Подробнее</a>
+            </div>
         </div>
-    </div>
-{% empty %}
-    <p>Новостей пока нет.</p>
-{% endfor %}
+    {% endfor %}
+{% else %}
+    <h4>Новостей ещё нет.</h4>
+{% endif %}
 {% endblock %}
